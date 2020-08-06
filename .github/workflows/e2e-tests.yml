@@ -6,4 +6,4 @@ jobs:
     name: Runs e2e tests with Playwright
     steps:
     - name: Playwright test suite
-      uses: SophieDeBenedetto/playwright-test-service-prototype@v1.1
+      uses: SophieDeBenedetto/playwright-test-service-prototype@v1.2
