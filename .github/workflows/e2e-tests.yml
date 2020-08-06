@@ -1,0 +1,9 @@
+on: [push]
+
+jobs:
+  e2e_tests:
+    runs-on: ubuntu-latest
+    name: Runs e2e tests with Playwright
+    steps:
+    - name: Playwright test suite
+      uses: actions/github-browser-tests@v1
