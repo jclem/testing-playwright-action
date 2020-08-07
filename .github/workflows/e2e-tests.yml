@@ -9,7 +9,8 @@ jobs:
         uses: docker pull jclem/playwright-test-service-prototype:latest
       - name: Create output directory
         run: mkdir -p "$RUNNER_TEMP/artifacts"
-      - name: |
+      - name: Run test service
+        run: |
           docker run jclem/playwright-test-service-prototype \
             --mount source="$RUNNER_TEMP/artifacts",destination=/app/artifacts
       - name: upload artifacts
