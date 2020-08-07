@@ -5,11 +5,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Runs e2e tests with Playwright
     steps:
-    - name: Playwright test suite
-      uses: jclem/playwright-test-service-prototype@master
-    - name: upload artifacts
-      if: ${{ always() }} # could be if: ${{ failure() }} to only upload artifacts when previous step of running playwright tests fails
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-results
-        path: /app/artifact/results.json # or path/to/artifact
+      - name: Pull test service container
+        uses: docker pull jclem/playwright-test-service-prototype:latest
+      - name: Create output directory
+        run: mkdir -p "$RUNNER_TEMP/artifacts"
+      - name: |
+          docker run jclem/playwright-test-service-prototype \
+            --mount source="$RUNNER_TEMP/artifacts",destination=/app/artifacts
+      - name: upload artifacts
+        if: ${{ always() }} # could be if: ${{ failure() }} to only upload artifacts when previous step of running playwright tests fails
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: '$RUNNER_TEMP/artifact/results.json'
