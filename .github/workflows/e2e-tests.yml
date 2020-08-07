@@ -11,9 +11,9 @@ jobs:
         run: mkdir -p "$RUNNER_TEMP/artifacts"
       - name: Run test service
         run: |
-          docker run jclem/playwright-test-service-prototype \
-            --mount source="$RUNNER_TEMP/artifacts",destination=/app/artifacts
-      - run: ls -ahl "$RUNNER_TEMP"
+          docker run -t \
+            --mount type=bind,src="$RUNNER_TEMP/artifacts",dst=/app/artifacts \
+            jclem/playwright-test-service-prototype
       - name: upload artifacts
         if: ${{ always() }} # could be if: ${{ failure() }} to only upload artifacts when previous step of running playwright tests fails
         uses: actions/upload-artifact@v2
