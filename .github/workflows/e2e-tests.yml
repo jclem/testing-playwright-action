@@ -1,4 +1,4 @@
-on: [push]
+on: [push, workflow_dispatch]
 
 jobs:
   e2e_tests:
@@ -6,7 +6,7 @@ jobs:
     name: Runs e2e tests with Playwright
     steps:
     - name: Playwright test suite
-      uses: SophieDeBenedetto/playwright-test-service-prototype@v1.14
+      uses: jclem/playwright-test-service-prototype@master
     - name: upload artifacts
       if: ${{ always() }} # could be if: ${{ failure() }} to only upload artifacts when previous step of running playwright tests fails
       uses: actions/upload-artifact@v2
