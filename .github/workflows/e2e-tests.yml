@@ -13,7 +13,7 @@ jobs:
         run: |
           docker run -t \
             --mount type=bind,src="$RUNNER_TEMP/artifacts",dst=/app/artifacts \
-            jclem/playwright-test-service-prototype
+            SophieDeBenedetto/playwright-test-service-prototype
       - name: upload artifacts
         if: ${{ always() }} # could be if: ${{ failure() }} to only upload artifacts when previous step of running playwright tests fails
         uses: actions/upload-artifact@v2
