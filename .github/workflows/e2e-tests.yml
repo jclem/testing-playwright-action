@@ -6,7 +6,7 @@ jobs:
     name: Runs e2e tests with Playwright
     steps:
       - name: Pull test service container
-        uses: docker pull jclem/playwright-test-service-prototype:latest
+        run: docker pull jclem/playwright-test-service-prototype:latest
       - name: Create output directory
         run: mkdir -p "$RUNNER_TEMP/artifacts"
       - name: Run test service
