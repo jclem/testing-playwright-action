@@ -6,4 +6,9 @@ jobs:
     name: Runs e2e tests with Playwright
     steps:
     - name: Playwright test suite
-      uses: SophieDeBenedetto/playwright-test-service-prototype@v1.8
+      uses: SophieDeBenedetto/playwright-test-service-prototype@v1.9
+    - name: upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: artifact/results.json # or path/to/artifact
